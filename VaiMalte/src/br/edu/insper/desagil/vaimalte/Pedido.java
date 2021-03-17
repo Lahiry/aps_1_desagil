@@ -4,10 +4,18 @@ public class Pedido {
 	private Produto produto;
 	private int quantidade;
 	
-	public Pedido(Produto produto, int quantidade) {
+	public Pedido(Produto produto) {
 		super();
 		this.produto = produto;
-		this.quantidade = quantidade;
+		this.quantidade = 1;
+	}
+	
+	public void incrementaQuantidade() {
+		this.quantidade = this.quantidade + 1;
+	}
+	
+	public double precoPedido() {
+		return this.produto.getPreco() * this.quantidade;
 	}
 
 	public Produto getProduto() {
