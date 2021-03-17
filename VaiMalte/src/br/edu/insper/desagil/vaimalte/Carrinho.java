@@ -16,10 +16,16 @@ public class Carrinho {
 		return pedidos;
 	}
 	
-	public void recebeProduto(Produto produto) {
-		if (pedidos.contains(produto)) {
-			this.pedidos.get(produto);
-		}
+	public void adicionaProduto(Produto produto) {
+		for (Pedido pedido: this.pedidos) {
+			if (pedido.getProduto() == produto) {
+				pedido.incrementaQuantidade();
+			}
+			else {
+				Pedido novo_pedido = new Pedido(produto);
+				this.pedidos.add(novo_pedido);
+			}
+		}		
 	}
 	
 }
