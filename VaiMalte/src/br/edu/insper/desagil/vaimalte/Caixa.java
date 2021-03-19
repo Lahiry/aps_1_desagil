@@ -12,11 +12,27 @@ public class Caixa {
 	}
 	
 	public void insereDesconto(Produto produto, int desconto) {
-		if ((desconto >= 1) & (desconto <= 99)) {
+		if ((desconto >= 1) && (desconto <= 99)) {
 			this.descontos.put(produto.getCodigo(), desconto);
 		}
 	}
 	
+	public double totalCompra(Carrinho carrinho) {
+		double total = 0.0;
+		
+		for (Pedido pedido: carrinho.getPedidos()) {
+			double desconto = descontos.get(pedido.getProduto().getCodigo());
+			if ((desconto >= 1) && (desconto <= 99)) {
+				total = total + (pedido.precoPedido() * (desconto/100));
+			}
+			else {
+				total = total + pedido.precoPedido();			}
+		}
+		return total;
+	}
+	
+}
+	/*
 	public double totalCompra(Carrinho carrinho) {
 		double total = 0.0;
 		for (Pedido pedido: carrinho.getPedidos()) {
@@ -25,5 +41,4 @@ public class Caixa {
 		}
 		return total;
 	}
-	
-}
+}*/
