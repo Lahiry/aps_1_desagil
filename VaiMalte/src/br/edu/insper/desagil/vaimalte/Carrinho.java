@@ -4,30 +4,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Carrinho {
-	private List<Pedido> pedidos;
+	private List<Pedido> listaPedidos;
 
 	public Carrinho() {
 		super();
-		this.pedidos = new ArrayList<>();
+		this.listaPedidos = new ArrayList<>();
 		
 	}
 
-	public List<Pedido> getPedidos() {
-		return pedidos;
+	public List<Pedido> getPedidos() { 
+		return this.listaPedidos;
 	}
 	
 	public void adicionaProduto(Produto produto) {
-		if (this.pedidos.isEmpty() == false) {
-			for (Pedido pedido: this.pedidos) {
-				if (pedido.getProduto() == produto) {
-					pedido.incrementaQuantidade();
-				}
-			}		
+		boolean novoProduto = true;
+		for (Pedido pedido: this.listaPedidos) {
+			if (pedido.getProduto().equals(produto)) {
+				pedido.incrementaQuantidade();
+				novoProduto = false;
+			}
 		}
-		else {
-			Pedido novo_pedido = new Pedido(produto);
-			this.pedidos.add(novo_pedido);
+		if (novoProduto) {
+			Pedido novoPedido = new Pedido(produto);
+			this.listaPedidos.add(novoPedido);
 		}
 	}
-	
 }

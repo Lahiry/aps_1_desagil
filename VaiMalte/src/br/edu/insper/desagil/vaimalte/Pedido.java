@@ -19,11 +19,11 @@ public class Pedido {
 	}
 
 	public Produto getProduto() {
-		return produto;
+		return this.produto;
 	}
 
 	public int getQuantidade() {
-		return quantidade;
+		return this.quantidade;
 	}
 	
 }
