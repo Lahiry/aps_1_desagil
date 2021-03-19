@@ -18,14 +18,17 @@ public class Caixa {
 	}
 	
 	public double totalCompra(Carrinho carrinho) {
-		double precos = 0.0;
-		double desconto_total = 0.0;
+		double total = 0.0;
 		for (Pedido pedido: carrinho.getPedidos()) {
-			double desconto = descontos.get(pedido.getProduto().getCodigo());
-			desconto_total = desconto_total + (pedido.precoPedido() * (desconto/100));
-			precos = precos + pedido.precoPedido();
+			if (this.descontos.containsKey(pedido.getProduto().getCodigo())) {
+				double desconto = descontos.get(pedido.getProduto().getCodigo());
+				total = total + ((pedido.getProduto().getPreco() * pedido.getQuantidade()) * (desconto/100));
+			}
+			else {
+				total = total + pedido.precoPedido();
+			}
 		}
-		double total = precos - desconto_total;
 		return total;
 	}
+	
 }
