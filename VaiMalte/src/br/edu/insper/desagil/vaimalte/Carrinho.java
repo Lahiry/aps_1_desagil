@@ -17,14 +17,10 @@ public class Carrinho {
 	}
 	
 	public void adicionaProduto(Produto produto) {
-		if (this.pedidos.size() > 0) {
+		if (this.pedidos.isEmpty() == false) {
 			for (Pedido pedido: this.pedidos) {
 				if (pedido.getProduto() == produto) {
 					pedido.incrementaQuantidade();
-				}
-				else {
-					Pedido novo_pedido = new Pedido(produto);
-					this.pedidos.add(novo_pedido);
 				}
 			}		
 		}
