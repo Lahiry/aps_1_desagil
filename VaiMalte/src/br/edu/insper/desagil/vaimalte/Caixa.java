@@ -18,27 +18,14 @@ public class Caixa {
 	}
 	
 	public double totalCompra(Carrinho carrinho) {
-		double total = 0.0;
-		
+		double precos = 0.0;
+		double desconto_total = 0.0;
 		for (Pedido pedido: carrinho.getPedidos()) {
 			double desconto = descontos.get(pedido.getProduto().getCodigo());
-			if ((desconto >= 1) && (desconto <= 99)) {
-				total = total + (pedido.precoPedido() * (desconto/100));
-			}
-			else {
-				total = total + pedido.precoPedido();			}
+			desconto_total = desconto_total + (pedido.precoPedido() * (desconto/100));
+			precos = precos + pedido.precoPedido();
 		}
+		double total = precos - desconto_total;
 		return total;
 	}
-	
 }
-	/*
-	public double totalCompra(Carrinho carrinho) {
-		double total = 0.0;
-		for (Pedido pedido: carrinho.getPedidos()) {
-			double desconto = descontos.get(pedido.getProduto().getCodigo());
-			total = total + ((pedido.getProduto().getPreco() * pedido.getQuantidade()) * (desconto/100));
-		}
-		return total;
-	}
-}*/

@@ -17,15 +17,21 @@ public class Carrinho {
 	}
 	
 	public void adicionaProduto(Produto produto) {
-		for (Pedido pedido: this.pedidos) {
-			if (pedido.getProduto() == produto) {
-				pedido.incrementaQuantidade();
-			}
-			else {
-				Pedido novo_pedido = new Pedido(produto);
-				this.pedidos.add(novo_pedido);
-			}
-		}		
+		if (this.pedidos.size() > 0) {
+			for (Pedido pedido: this.pedidos) {
+				if (pedido.getProduto() == produto) {
+					pedido.incrementaQuantidade();
+				}
+				else {
+					Pedido novo_pedido = new Pedido(produto);
+					this.pedidos.add(novo_pedido);
+				}
+			}		
+		}
+		else {
+			Pedido novo_pedido = new Pedido(produto);
+			this.pedidos.add(novo_pedido);
+		}
 	}
 	
 }
