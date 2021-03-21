@@ -22,12 +22,13 @@ public class Caixa {
 		for (Pedido pedido: carrinho.getPedidos()) {
 			if (this.descontos.containsKey(pedido.getProduto().getCodigo())) {
 				double desconto = descontos.get(pedido.getProduto().getCodigo());
-				total = total + ((pedido.getProduto().getPreco() * pedido.getQuantidade()) * (desconto/100));
+				total = total + (pedido.precoPedido() * (1 - (desconto/100)));
 			}
 			else {
 				total = total + pedido.precoPedido();
 			}
 		}
+		total = Math.round(total * 100.0) / 100.0; //Arredondamento para duas casas decimais		
 		return total;
 	}
 	

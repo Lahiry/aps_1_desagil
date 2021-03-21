@@ -31,15 +31,15 @@ public class Testador {
 	public boolean testeC() {
 		Carrinho carrinho = new Carrinho();
 		
-		Produto bolinho = new Produto(153, "Bolinho Ana Maria", 5.00);
+		Produto bolinho = new Produto(153, "Bolinho Ana Maria", 12.00);
 		
 		carrinho.adicionaProduto(bolinho);
 		
 		Caixa caixa = new Caixa();
 		
-		caixa.insereDesconto(bolinho, 50);
+		caixa.insereDesconto(bolinho, 20);
 		
-		if (caixa.totalCompra(carrinho) == 2.50) {
+		if (caixa.totalCompra(carrinho) == 9.60) {
 			return true;
 		}
 	    return false;
